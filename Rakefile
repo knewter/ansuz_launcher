@@ -7,11 +7,10 @@ task :launch, [:project_name, :domain] do |t, args|
   `cp config/database.yml.example config/database.yml`
   `sed -i 's/ansuz/#{args.project_name}/' config/database.yml`
   `rake db:create:all`
-  `rake db:migrate RAILS_ENV=production`
   `rake db:migrate:plugins RAILS_ENV=production`
+  `rake db:migrate RAILS_ENV=production`
   `rake utils:create_admin RAILS_ENV=production`
   `mkdir public/uploads`
-  `mkdir log`
   puts "Now run 'sudo rake setup_webserver[#{args.project_name},#{args.domain}]'"
 end
 
